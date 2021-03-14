@@ -8,8 +8,85 @@
 
 </head>
 <body>
-    
-    <script src="main.js"></script>
+    <div class="content">
+        
+            <div class="task">
+        
+                    <div class="side-menu">
+                        <h1 class="automargin text-center logo" id="tasktitle">OROBOROUS</h1>
+        
+                        <div class="projects-dir">
+                            <div class="project">Home</div>
+                        </div>
+        
+                        <div class="new-todo-button automargin noselect">+</div>
+        
+                    </div>
+                    <div class="main">
+        
+                        <div class="create-task taskito">
+                            <div class="top-details">
+                                <div class="left">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="add-button" class="check-icon" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V7h2v4h4v2h-4v4h-2v-4H7v-2h4zm1 11C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
+                                    <span class="textarea-new" role="textbox" contenteditable ></span>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <div data-index="2" class="taskito displayN" id="taskito">
+                            <div class="top-details">
+                                <div class="dltButton" id="completeButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" data-index="2" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-.997-4L6.76 11.757l1.414-1.414 2.829 2.829 5.656-5.657 1.415 1.414L11.003 16z"></path></svg>
+                                </div>
+                                <div class="left">
+                                    <span class="textarea-new" id='taskito-title' role="textbox" contenteditable="">First ffffTask</span>
+                                </div>
+                                <div class="right">
+                                    <div class="due-date">27/01</div>
+                                </div>
+                            </div>
+                            <span class="textarea displayN" role="textbox" contenteditable=""></span>
+                            <div class="save-button displayN" id="saveButton">Save</div>
+                        </div>
+        
+                    </div>
+        
+            </div>
 
+            <div class="task  displayN" id="task-template">
+        
+                <div class="main">
+    
+                    <div class="create-task taskito">
+                        <div class="top-details">
+                            <div class="left">
+                                <svg xmlns="http://www.w3.org/2000/svg" id="add-button" class="check-icon" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V7h2v4h4v2h-4v4h-2v-4H7v-2h4zm1 11C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
+                                <span class="textarea-new" role="textbox" contenteditable ></span>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div data-index="2" class="taskito displayN" id="taskito">
+                        <div class="top-details">
+                            <div class="dltButton" id="completeButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" data-index="2" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-.997-4L6.76 11.757l1.414-1.414 2.829 2.829 5.656-5.657 1.415 1.414L11.003 16z"></path></svg>
+                            </div>
+                            <div class="left">
+                                <span class="textarea-new" id='taskito-title' role="textbox" contenteditable="">First ffffTask</span>
+                            </div>
+                            <div class="right">
+                                <div class="due-date">27/01</div>
+                            </div>
+                        </div>
+                        <span class="textarea displayN" role="textbox" contenteditable=""></span>
+                        <div class="save-button displayN" id="saveButton">Save</div>
+                    </div>
+    
+                </div>
+    
+        </div>
+        
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
