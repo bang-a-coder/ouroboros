@@ -23,7 +23,7 @@ class Task{
             task.id = makeid(10)
 
             let mainDisplayArea = task.querySelector('.main')
-                mainDisplayArea.setAttribute('style', 'margin-left: 10px')
+                mainDisplayArea.setAttribute('style', 'margin-left: 10px; padding: 0px')
 
             let taskCreator =task.querySelector('.create-task')
                 let newTaskTitle = taskCreator.querySelector('.textarea-new')
