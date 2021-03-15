@@ -3,11 +3,34 @@ import {Task} from './task.js'
 
 const conntent = document.querySelector('.content')
 const mainDisplayArea = conntent.querySelector('.main')
+const createProjectBtn = conntent.querySelector('#createProject')
+const projectsDir = conntent.querySelector('.projects-dir')
+
+let viewID = 0
+
+createProjectBtn.addEventListener('click',() => {createProject()})
+
+function createProject(){
+    viewID++
+    const newProjectSide = document.createElement('div')
+        newProjectSide.classList.add('project')
+        newProjectSide.innerHTML = 'New Project'
+        newProjectSide.id = viewID
+    projectsDir.appendChild(newProjectSide)
+
+    const newProjectInst = document.querySelector('.main').cloneNode(true)
+        newProjectInst.style.background = 'lightred'
+
+    conntent.querySelector('.task').appendChild(newProjectInst)
+
+    
+}
+
 
 let index = 0
 
 
-let taskCreator = document.querySelector('.create-task')
+let taskCreator = mainDisplayArea.querySelector('.create-task')
     let newTaskTitle = taskCreator.querySelector('.textarea-new')
     let createTaskBtn = taskCreator.querySelector(`#add-button`)
 
