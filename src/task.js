@@ -9,10 +9,13 @@ class Task{
     }
 
     createTaskVisual(parent){
+        let index = makeid(10)
+
         let taskito = document.querySelector('#taskito').cloneNode(true)
             let titleDiv = taskito.querySelector('#taskito-title')
             let descriptionDiv = taskito.querySelector('.textarea')
             let saveButton = taskito.querySelector('.save-button')
+            let completeButton = taskito.querySelector('#completeButton')
 
         taskito.classList.remove('displayN')
 
@@ -20,7 +23,7 @@ class Task{
 
         let task = document.querySelector('#task-template').cloneNode(true)
             task.classList.add('displayN')
-            task.id = makeid(10)
+            task.id = index
 
             let mainDisplayArea = task.querySelector('.main')
                 mainDisplayArea.setAttribute('style', 'margin-left: 10px; padding: 0px')
@@ -29,11 +32,9 @@ class Task{
                 let newTaskTitle = taskCreator.querySelector('.textarea-new')
                 let createTaskBtn = taskCreator.querySelector(`#add-button`)
                 
-                let index = 0
                 createTaskBtn.addEventListener('click', function() {
-                    index++
                     console.log('creating')
-                    let newTask = new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
+                    new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
                     newTaskTitle.innerHTML = ''
                     console.log(makeid(10))
                 })
