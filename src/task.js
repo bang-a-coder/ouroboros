@@ -3,9 +3,15 @@ class Task{
         this.name = name
         this.description = description
         this.identifier = identifier
+        this.taskito
 
         this.createTaskVisual(parent)
 
+    }
+
+    completeTask(){
+        console.log('removing ')
+        this.taskito.remove()
     }
 
     createTaskVisual(parent){
@@ -20,6 +26,8 @@ class Task{
         taskito.classList.remove('displayN')
 
         titleDiv.innerHTML = this.name
+
+
 
         let task = document.querySelector('#task-template').cloneNode(true)
             task.classList.add('displayN')
@@ -39,6 +47,10 @@ class Task{
                     console.log(makeid(10))
                 })
 
+
+        completeButton.addEventListener('click', ()=>{
+            this.completeTask()
+        })
 
 
         taskito.addEventListener('click', expand)
@@ -79,8 +91,11 @@ class Task{
             return result;
          }
 
+         
         taskito.appendChild(task)
         parent.appendChild(taskito)
+
+        this.taskito = taskito
     }
 }
 
