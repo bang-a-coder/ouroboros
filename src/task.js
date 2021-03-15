@@ -9,10 +9,7 @@ class Task{
 
     }
 
-    completeTask(){
-        console.log('removing ')
-        this.taskito.remove()
-    }
+    completeTask(){this.taskito.remove()}
 
     createTaskVisual(parent){
         let index = makeid(10)
@@ -47,11 +44,7 @@ class Task{
                     console.log(makeid(10))
                 })
 
-
-        completeButton.addEventListener('click', ()=>{
-            this.completeTask()
-        })
-
+        completeButton.addEventListener('click', ()=>{this.completeTask()})
 
         taskito.addEventListener('click', expand)
 
