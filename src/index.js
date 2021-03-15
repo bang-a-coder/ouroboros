@@ -7,6 +7,9 @@ const createProjectBtn = conntent.querySelector('#createProject')
 const projectsDir = conntent.querySelector('.projects-dir')
 
 let viewID = 0
+let visibleDiv 
+
+let data = []
 
 createProjectBtn.addEventListener('click',() => {createProject()})
 
@@ -17,11 +20,27 @@ function createProject(){
         newProjectSide.innerHTML = 'New Project'
         newProjectSide.dataset.index = viewID
         newProjectSide.addEventListener('click', ()=> {
+            visibleDiv.classList.add('displayN')
+
+            newTask.taskito.classList.remove('displayN')
+
+            visibleDiv = newTask.taskito
             
         })
     projectsDir.appendChild(newProjectSide)
     
-    
+    let newTask = new Task(mainDisplayArea, 'New Task', viewID)
+        newTask.taskito.classList.add('displayN')
+        newTask.taskito.setAttribute('style', 'border: none')
+        newTask.taskito.querySelector('.dltButton').remove()
+        newTask.taskito.querySelector('.save-button').remove()
+        newTask.taskito.querySelector('.due-date').remove()
+        newTask.taskito.querySelector('.textarea').remove()
+        eventFire(newTask.taskito, 'click')
+
+        data.push(newTask)
+        console.log(data)
+
     
 
     //conntent.querySelector('#home-task').appendChild(newProjectInst)
@@ -30,17 +49,23 @@ function createProject(){
     
 }
 
-let index = 0
 
 
-let homeTask = new Task(mainDisplayArea, 'HOME', index)
+let homeTask = new Task(mainDisplayArea, 'HOME', viewID)
+console.log(homeTask.taskitoIndex)
 homeTask.taskito.setAttribute('style', 'border: none')
 homeTask.taskito.querySelector('.dltButton').remove()
 homeTask.taskito.querySelector('.save-button').remove()
 homeTask.taskito.querySelector('.due-date').remove()
 homeTask.taskito.querySelector('.textarea').remove()
+viewID++
+data.push(homeTask)
+
+console.log(data)
 
 eventFire(homeTask.taskito, 'click')
+
+visibleDiv = homeTask.taskito
 
 function eventFire(el, etype){
     if (el.fireEvent) {
