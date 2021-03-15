@@ -4,6 +4,7 @@ class Task{
         this.description = description
         this.identifier = identifier
         this.taskito
+        this.taskitoIndex
 
         this.createTaskVisual(parent)
 
@@ -14,15 +15,20 @@ class Task{
     createTaskVisual(parent){
         let index = makeid(10)
 
+        this.taskitoIndex = index
+
+
         let taskito = document.querySelector('#taskito').cloneNode(true)
             let titleDiv = taskito.querySelector('#taskito-title')
             let descriptionDiv = taskito.querySelector('.textarea')
             let saveButton = taskito.querySelector('.save-button')
             let completeButton = taskito.querySelector('#completeButton')
 
+
         taskito.classList.remove('displayN')
 
         titleDiv.innerHTML = this.name
+        taskito.dataset.index = index
 
 
 

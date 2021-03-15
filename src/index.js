@@ -15,32 +15,56 @@ function createProject(){
     const newProjectSide = document.createElement('div')
         newProjectSide.classList.add('project')
         newProjectSide.innerHTML = 'New Project'
-        newProjectSide.id = viewID
+        newProjectSide.dataset.index = viewID
+        newProjectSide.addEventListener('click', ()=> {
+            
+        })
     projectsDir.appendChild(newProjectSide)
+    
+    
+    
 
-    const newProjectInst = document.querySelector('.main').cloneNode(true)
-        newProjectInst.style.background = 'lightred'
+    //conntent.querySelector('#home-task').appendChild(newProjectInst)
 
-    conntent.querySelector('.task').appendChild(newProjectInst)
 
     
 }
 
-
 let index = 0
 
 
-let taskCreator = mainDisplayArea.querySelector('.create-task')
-    let newTaskTitle = taskCreator.querySelector('.textarea-new')
-    let createTaskBtn = taskCreator.querySelector(`#add-button`)
+let homeTask = new Task(mainDisplayArea, 'HOME', index)
+homeTask.taskito.setAttribute('style', 'border: none')
+homeTask.taskito.querySelector('.dltButton').remove()
+homeTask.taskito.querySelector('.save-button').remove()
+homeTask.taskito.querySelector('.due-date').remove()
+homeTask.taskito.querySelector('.textarea').remove()
+
+eventFire(homeTask.taskito, 'click')
+
+function eventFire(el, etype){
+    if (el.fireEvent) {
+      el.fireEvent('on' + etype);
+    } else {
+      var evObj = document.createEvent('Events');
+      evObj.initEvent(etype, true, false);
+      el.dispatchEvent(evObj);
+    }
+  }
 
 
-createTaskBtn.addEventListener('click', function() {
-    console.log('creating')
-    console.log(newTaskTitle.innerHTML)
-    let newTask = new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
-    newTaskTitle.innerHTML = ''
-})
+
+// let taskCreator = mainDisplayArea.querySelector('.create-task')
+//     let newTaskTitle = taskCreator.querySelector('.textarea-new')
+//     let createTaskBtn = taskCreator.querySelector(`#add-button`)
+
+
+// createTaskBtn.addEventListener('click', function() {
+//     console.log('creating')
+//     console.log(newTaskTitle.innerHTML)
+//     let newTask = new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
+//     newTaskTitle.innerHTML = ''
+// })
 
 
 //let homeTask = new Task(conntent,'Oroborousss',index )
