@@ -31,13 +31,12 @@ function createProject(name){
   
   projectsDir.appendChild(newProjectSide)
   
-  let newTask = new Task(mainDisplayArea, name, viewID)
+  let newTask = new Task(mainDisplayArea, name, '',viewID)
   if (name === 'HOME'){
     visibleDiv = newTask.taskito
   } else {
     newTask.taskito.classList.add('displayN')
   }
-
   newTask.taskito.setAttribute('style', 'border: none')
   newTask.taskito.querySelector('.dltButton').remove()
   newTask.taskito.querySelector('.save-button').remove()
