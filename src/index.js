@@ -13,11 +13,11 @@ let data = []
 
 createProjectBtn.addEventListener('click',() => {createProject()})
 
-function createProject(){
+function createProject(name){
     viewID++
     const newProjectSide = document.createElement('div')
         newProjectSide.classList.add('project')
-        newProjectSide.innerHTML = 'New Project'
+        newProjectSide.innerHTML = name
         newProjectSide.dataset.index = viewID
         newProjectSide.addEventListener('click', ()=> {
             visibleDiv.classList.add('displayN')
@@ -29,8 +29,13 @@ function createProject(){
         })
     projectsDir.appendChild(newProjectSide)
     
-    let newTask = new Task(mainDisplayArea, 'New Task', viewID)
-        newTask.taskito.classList.add('displayN')
+    let newTask = new Task(mainDisplayArea, name, viewID)
+        if (name === 'HOME'){
+          visibleDiv = newTask.taskito
+        } else {
+          newTask.taskito.classList.add('displayN')
+        }
+
         newTask.taskito.setAttribute('style', 'border: none')
         newTask.taskito.querySelector('.dltButton').remove()
         newTask.taskito.querySelector('.save-button').remove()
@@ -49,23 +54,26 @@ function createProject(){
     
 }
 
+createProject('HOME')
 
 
-let homeTask = new Task(mainDisplayArea, 'HOME', viewID)
-console.log(homeTask.taskitoIndex)
-homeTask.taskito.setAttribute('style', 'border: none')
-homeTask.taskito.querySelector('.dltButton').remove()
-homeTask.taskito.querySelector('.save-button').remove()
-homeTask.taskito.querySelector('.due-date').remove()
-homeTask.taskito.querySelector('.textarea').remove()
-viewID++
-data.push(homeTask)
 
-console.log(data)
 
-eventFire(homeTask.taskito, 'click')
+// let homeTask = new Task(mainDisplayArea, 'HOME', viewID)
+// console.log(homeTask.taskitoIndex)
+// homeTask.taskito.setAttribute('style', 'border: none')
+// homeTask.taskito.querySelector('.dltButton').remove()
+// homeTask.taskito.querySelector('.save-button').remove()
+// homeTask.taskito.querySelector('.due-date').remove()
+// homeTask.taskito.querySelector('.textarea').remove()
+// viewID++
+// data.push(homeTask)
 
-visibleDiv = homeTask.taskito
+// console.log(data)
+
+// eventFire(homeTask.taskito, 'click')
+
+// visibleDiv = homeTask.taskito
 
 function eventFire(el, etype){
     if (el.fireEvent) {
