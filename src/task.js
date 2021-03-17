@@ -1,17 +1,23 @@
 class Task{
-    constructor(parent, name,description='empty',identifier,database){
+    constructor(parentID, name,description='empty',identifier,database){
         this.name = name
         this.description = description
         this.identifier = identifier
         this.taskito
         this.taskitoIndex
-        this.parent = parent
+        this.parentID = parentID
 
-        this.createTaskVisual(parent,database)
+        this.createTaskVisual(parentID,database)
         
         this.recordThyself(database)
 
 
+    }
+
+    static fromObj(jason){
+        console.log('jason parent')
+        console.log(jason.parent.id)
+        return new Task(jason.parentID,jason.name,jason.description,jason.identifier)
     }
 
     completeTask(){this.taskito.remove()}
@@ -22,7 +28,7 @@ class Task{
 
     }
 
-    createTaskVisual(parent,database){
+    createTaskVisual(parentID,database){
         self = this
 
         let index = makeid(10)
@@ -59,7 +65,7 @@ class Task{
                 
                 createTaskBtn.addEventListener('click', function() {
                     console.log('creating')
-                    new Task(mainDisplayArea, newTaskTitle.innerHTML,'', index,database)
+                    new Task(mainDisplayArea.id, newTaskTitle.innerHTML,'', index,database)
             
                     newTaskTitle.innerHTML = ''
 
@@ -107,9 +113,10 @@ class Task{
             return result;
          }
 
-         
+        console.log(parentID)
+        console.log(document.querySelector(`#${parentID}`))
         taskito.appendChild(task)
-        parent.appendChild(taskito)
+        document.querySelector(`#${parentID}`).appendChild(taskito)
 
         this.taskito = taskito
     }

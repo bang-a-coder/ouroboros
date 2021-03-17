@@ -2,7 +2,7 @@ import "./styles.scss";
 import {Task} from './task.js'
 
 const conntent = document.querySelector('.content')
-const mainDisplayArea = conntent.querySelector('.main')
+const mainDisplayArea = conntent.querySelector('#mainthing')
 const createProjectBtn = conntent.querySelector('#createProject')
 const projectsDir = conntent.querySelector('.projects-dir')
 
@@ -15,7 +15,7 @@ window.onload = () => {
   console.log('windowload')
   if(localStorage.getItem('database')) {
     console.log(localStorage)
-    let storage = JSON.parse(localStorage.getItem('database'))
+    let storage = JSON.parse(localStorage.getItem('database')).map(e => Task.fromObj(e))
     console.log(storage)
   }
 }
@@ -46,7 +46,7 @@ function createProject(name){
   
   projectsDir.appendChild(newProjectSide)
   
-  let newTask = new Task(mainDisplayArea, name, '',viewID, data)
+  let newTask = new Task(mainDisplayArea.id, name, '',viewID, data)
   if (name === 'HOME'){
     visibleDiv = newTask.taskito
   } else {
@@ -65,8 +65,8 @@ function createProject(name){
 
   //localStorage.setItem("projectList", JSON.stringify(data))
 }
-window.onload(setTimeout(createProject('HOME'),10000)
-)
+createProject('HOME')
+
 
 //HELPERS
 
