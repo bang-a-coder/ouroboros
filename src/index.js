@@ -11,6 +11,21 @@ let visibleDiv
 
 let data = []
 
+window.onload = () => {
+  console.log('windowload')
+  if(localStorage.getItem('database')) {
+    console.log(localStorage)
+    let storage = JSON.parse(localStorage.getItem('database'))
+    console.log(storage)
+  }
+}
+
+window.onbeforeunload = function(){
+  localStorage.setItem('database', JSON.stringify(data))
+  console.log(localStorage)
+}
+
+
 createProjectBtn.addEventListener('click',() => {createProject()})
 
 function createProject(name){
@@ -31,7 +46,7 @@ function createProject(name){
   
   projectsDir.appendChild(newProjectSide)
   
-  let newTask = new Task(mainDisplayArea, name, '',viewID)
+  let newTask = new Task(mainDisplayArea, name, '',viewID, data)
   if (name === 'HOME'){
     visibleDiv = newTask.taskito
   } else {
@@ -44,10 +59,14 @@ function createProject(name){
   newTask.taskito.querySelector('.textarea').remove()
   eventFire(newTask.taskito, 'click')
 
-  data.push(newTask)
+  ////data.push(newTask)
   console.log(data)
+
+
+  //localStorage.setItem("projectList", JSON.stringify(data))
 }
-createProject('HOME')
+window.onload(setTimeout(createProject('HOME'),10000)
+)
 
 //HELPERS
 
@@ -62,3 +81,5 @@ function eventFire(el, etype){
   }
 
 console.log('working')
+
+

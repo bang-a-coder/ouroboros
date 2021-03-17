@@ -1,19 +1,32 @@
 class Task{
-    constructor(parent, name,description='empty',identifier){
+    constructor(parent, name,description='empty',identifier,database){
         this.name = name
         this.description = description
         this.identifier = identifier
         this.taskito
         this.taskitoIndex
+        this.parent = parent
 
-        this.createTaskVisual(parent)
+        this.createTaskVisual(parent,database)
+        
+        this.recordThyself(database)
+
 
     }
 
     completeTask(){this.taskito.remove()}
 
-    createTaskVisual(parent){
+    recordThyself(database){
+        console.log('recordingthyself')
+        database.push(this)
+
+    }
+
+    createTaskVisual(parent,database){
+        self = this
+
         let index = makeid(10)
+        
 
         this.taskitoIndex = index
 
@@ -38,6 +51,7 @@ class Task{
 
             let mainDisplayArea = task.querySelector('.main')
                 mainDisplayArea.setAttribute('style', 'margin-left: 10px; padding: 0px')
+                mainDisplayArea.id = index
 
             let taskCreator =task.querySelector('.create-task')
                 let newTaskTitle = taskCreator.querySelector('.textarea-new')
@@ -45,10 +59,13 @@ class Task{
                 
                 createTaskBtn.addEventListener('click', function() {
                     console.log('creating')
-                    new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
+                    new Task(mainDisplayArea, newTaskTitle.innerHTML,'', index,database)
+            
                     newTaskTitle.innerHTML = ''
-                    console.log(makeid(10))
+
                 })
+
+
 
         completeButton.addEventListener('click', ()=>{this.completeTask()})
 
