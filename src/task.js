@@ -15,7 +15,7 @@ class Task{
 
     createTaskVisual(parent){
         let index = makeid(10)
-        self = this
+        let that = this
 
         this.taskitoIndex = index
 
@@ -48,8 +48,8 @@ class Task{
                 createTaskBtn.addEventListener('click', function() {
                     console.log('creating')
                     let newTask = new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
-                    self.memory.push(newTask)
-                    console.log('MEMORY' ,self.memory)
+                    that.memory.push(newTask)
+                    console.log('MEMORY' ,that.memory)
                     newTaskTitle.innerHTML = ''
                     console.log(makeid(10))
                 })
