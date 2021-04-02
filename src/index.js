@@ -11,6 +11,25 @@ let visibleDiv
 
 let data = []
 
+window.addEventListener('beforeunload', ()=> {
+    
+    if (data.length !== 0) {
+      console.log('STORING')
+      localStorage.setItem('memoir',JSON.stringify(data))}
+  }
+)
+
+if (localStorage.getItem('memoir')) {
+  console.log('FROM MEMORY')
+  let zombies = JSON.parse(localStorage.getItem('memoir')).map(e => {
+    Task.fromObj(e)
+  })
+  console.log(zombies)
+
+} else {createProject('HOME')}
+
+console.log('DATA', data)
+
 createProjectBtn.addEventListener('click',() => {createProject()})
 
 function createProject(name){
@@ -31,7 +50,8 @@ function createProject(name){
   
   projectsDir.appendChild(newProjectSide)
   
-  let newTask = new Task(mainDisplayArea, name, '',viewID)
+  let newTask = new Task(mainDisplayArea, name, viewID)
+
   if (name === 'HOME'){
     visibleDiv = newTask.taskito
   } else {
@@ -47,7 +67,6 @@ function createProject(name){
   data.push(newTask)
   console.log(data)
 }
-createProject('HOME')
 
 //HELPERS
 

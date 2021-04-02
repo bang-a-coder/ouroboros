@@ -1,19 +1,31 @@
 class Task{
-    constructor(parent, name,description='empty',identifier){
+    constructor(parentIdentifier, name, identifier, memory=[]){
         this.name = name
-        this.description = description
         this.identifier = identifier
+        this.parentIdentifier = parentIdentifier
         this.taskito
        this.taskitoIndex
-       this.memory = []
+       this.memory = memory
 
-        this.createTaskVisual(parent)
+        this.createTaskVisual(parentIdentifier)
 
     }
 
     completeTask(){this.taskito.remove()}
 
-    createTaskVisual(parent){
+    static fromObj(jason){
+        let revivedTask = new Task(jason.parentIdentifier, jason.name, jason.identifier)
+
+        if (revivedTask.memory !== []){
+            revivedTask.memory.map(e => {
+                Task.fromObj(e)
+            })
+        }
+
+        return revivedTask
+    }
+
+    createTaskVisual(parentIdentifier){
         let index = makeid(10)
         let that = this
 
@@ -40,6 +52,7 @@ class Task{
 
             let mainDisplayArea = task.querySelector('.main')
                 mainDisplayArea.setAttribute('style', 'margin-left: 10px; padding: 0px')
+                this.mainDisplayArea = mainDisplayArea
 
             let taskCreator =task.querySelector('.create-task')
                 let newTaskTitle = taskCreator.querySelector('.textarea-new')
@@ -96,7 +109,7 @@ class Task{
 
          
         taskito.appendChild(task)
-        parent.appendChild(taskito)
+        parentIdentifier.appendChild(taskito)
 
         this.taskito = taskito
     }
