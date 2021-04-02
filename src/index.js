@@ -86,3 +86,9 @@ function eventFire(el, etype){
   }
 
 console.log('working')
+
+document.querySelector(".clear-data").addEventListener('click', function(){
+  data = []
+  localStorage.clear()
+  console.log('Wiped')
+})
