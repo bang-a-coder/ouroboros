@@ -21,9 +21,13 @@ window.addEventListener('beforeunload', ()=> {
 
 if (localStorage.getItem('memoir')) {
   console.log('FROM MEMORY')
+  console.log(localStorage.getItem('memoir'))
+
   let zombies = JSON.parse(localStorage.getItem('memoir')).map(e => {
-    Task.fromObj(e)
+   return Task.fromObj(e, mainDisplayArea)
   })
+  
+  data = zombies
   console.log(zombies)
 
 } else {createProject('HOME')}
@@ -50,7 +54,8 @@ function createProject(name){
   
   projectsDir.appendChild(newProjectSide)
   
-  let newTask = new Task(mainDisplayArea, name, viewID)
+  let newTask = new Task(mainDisplayArea, name, viewID, mainDisplayArea)
+  newTask.createTaskVisual(mainDisplayArea)
 
   if (name === 'HOME'){
     visibleDiv = newTask.taskito

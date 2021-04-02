@@ -1,31 +1,34 @@
 class Task{
-    constructor(parentIdentifier, name, identifier, memory=[]){
+    constructor(parentIdentifier, name, identifier, mainDisplayArea=null, memory=[]){
         this.name = name
         this.identifier = identifier
         this.parentIdentifier = parentIdentifier
         this.taskito
-       this.taskitoIndex
-       this.memory = memory
+        this.taskitoIndex
+        this.memory = memory
+        this.mainDisplayArea = mainDisplayArea
 
-        this.createTaskVisual(parentIdentifier)
 
     }
 
     completeTask(){this.taskito.remove()}
 
-    static fromObj(jason){
-        let revivedTask = new Task(jason.parentIdentifier, jason.name, jason.identifier)
+    static fromObj(jason, appendTo){
+        let revivedTask = new Task(jason.parentIdentifier, jason.name, jason.identifier,jason.mainDisplayArea, jason.memory)
+            revivedTask.createTaskVisual(appendTo)
 
-        if (revivedTask.memory !== []){
-            revivedTask.memory.map(e => {
-                Task.fromObj(e)
+        if (revivedTask.memory.length !== 0){
+            revivedTask.memory = revivedTask.memory.map(e => {
+                let revivedSub = Task.fromObj(e, revivedTask.mainDisplayArea)
+
+                return revivedSub
             })
         }
 
         return revivedTask
     }
 
-    createTaskVisual(parentIdentifier){
+    createTaskVisual(parent){
         let index = makeid(10)
         let that = this
 
@@ -60,7 +63,8 @@ class Task{
                 
                 createTaskBtn.addEventListener('click', function() {
                     console.log('creating')
-                    let newTask = new Task(mainDisplayArea, newTaskTitle.innerHTML, index)
+                    let newTask = new Task(mainDisplayArea, newTaskTitle.innerHTML, index, mainDisplayArea)
+                    newTask.createTaskVisual(mainDisplayArea)
                     that.memory.push(newTask)
                     console.log('MEMORY' ,that.memory)
                     newTaskTitle.innerHTML = ''
@@ -109,7 +113,7 @@ class Task{
 
          
         taskito.appendChild(task)
-        parentIdentifier.appendChild(taskito)
+        parent.appendChild(taskito)
 
         this.taskito = taskito
     }
